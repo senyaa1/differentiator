@@ -14,18 +14,18 @@
 	X(COS)	\
 	X(TAN)	\
 	X(CTAN)	\
-	X(ARCSIN)	\
-	X(ARCCOS)	\
-	X(ARCTG)	\
-	X(ARCCTG)	\
-	X(SH	)	\
-	X(CH	)	\
-	X(TH	)	\
-	X(CTH)		\
-	X(ARCSH)	\
-	X(ARCCH)	\
-	X(ARCTH)	\
-	X(ARCCTH)	\
+	// X(ARCSIN)	\
+	// X(ARCCOS)	\
+	// X(ARCTG)	\
+	// X(ARCCTG)	\
+	// X(SH	)	\
+	// X(CH	)	\
+	// X(TH	)	\
+	// X(CTH)		\
+	// X(ARCSH)	\
+	// X(ARCCH)	\
+	// X(ARCTH)	\
+	// X(ARCCTH)	\
 
 
 #define X(NAME) NAME,
