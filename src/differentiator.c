@@ -6,17 +6,23 @@
 #define D(NODE)	differentiate(NODE)
 #define C(NODE)	node_copy(NODE)
 
-#define NODE_OP(NODE, OP, LEFT, RIGHT)				\
-	diff_node_t* NODE = node_create_op((diff_node_t*)(OP));	\
-	NODE->left = (LEFT);					\
-	NODE->right = (RIGHT);					\
+static diff_node_t* f(char* func, diff_node_t* left, diff_node_t* right)
+{
+	diff_node_t* node = node_create_func(func);
+	node->left = left;
+	node->right = right;
 
+	return node;
+}
 
-#define NODE_FUNC(NODE, FUNC, LEFT, RIGHT)			\
-	diff_node_t* NODE = node_create_func((diff_node_t*)(FUNC));		\
-	NODE->left = (LEFT);					\
-	NODE->right = (RIGHT);					\
-								\
+static diff_node_t* op(char* op, diff_node_t* left, diff_node_t* right)
+{
+	diff_node_t* node = node_create_op(op);
+	node->left = left;
+	node->right = right;
+
+	return node;
+}
 
 static diff_node_t* diff_function(diff_node_t* node)
 {
@@ -24,50 +30,70 @@ static diff_node_t* diff_function(diff_node_t* node)
 
 	if(type == ADD)
 	{
-		NODE_OP(add, "+", D(node->left), D(node->right))
-		return add;
+		return op("+", D(node->left), D(node->right));
 	}
 
 	if(type == SUB)
 	{
-
-		NODE_OP(sub, "-", D(node->left), D(node->right));
-		return sub;
+		return op("-", D(node->left), D(node->right));
 	}
 
 	if(type == MUL)
 	{
-		NODE_OP(mul1, "*", D(node->left), C(node->right));
-		NODE_OP(mul2, "*", C(node->left), D(node->right));
-		NODE_OP(final, "+", mul1, mul2);
-		return final;
+		return op("+",	op("*", D(node->left), C(node->right)), 	
+				op("*", C(node->left), D(node->right)));
 	}
 
 	if(type == DIV)
 	{
-
-		NODE_OP(div_mul1, "*", D(node->left), C(node->right));
-		NODE_OP(div_mul2, "*", C(node->left), D(node->right));
-		NODE_OP(div_sub, "-", div_mul1, div_mul2);
-		NODE_OP(div_sqr, "*", C(node->right), C(node->right));
-		NODE_OP(div_final, "/", div_sub, div_sqr);
-		return div_final;
+		return op("/",	
+				op("-", 
+					op("*", D(node->left), C(node->right)),		
+					op("*", C(node->left), D(node->right))
+				),
+			op("^", C(node->right), node_create_num("2"))
+		);
 	}
-
 	if(type == SIN)
 	{
-		NODE_FUNC(cos, "cos", C(node->left), 0);
-		NODE_OP(cos_final, "*", cos, D(node->left));
-		return cos_final;
+		return op("*", f("cos", C(node->left), 0), D(node->left));
 	}
 
 	if(type == COS)
 	{
-
-		NODE_FUNC(sin, "sin", C(node->left), 0);
-		NODE_OP(sin_final, "*", sin, D(node->left));
-		return sin_final;
+		
+		return op("*",
+				op("*", 
+					f("sin", C(node->left), 0), D(node->left)
+				),
+			node_create_num("-1")
+	    );
 	}
+
+	if(type == TG)
+	{
+		return op("*",  
+				op("/", 
+					node_create_num("1"), 
+					op("^", f("cos", C(node->left), 0), node_create_num("2"))),
+				D(node->left));
+	}
+
+	if(type == CTG)
+	{
+		return op("*",  
+				op("/", 
+					node_create_num("-1"), 
+					op("^", f("sin", C(node->left), 0), node_create_num("2"))),
+				D(node->left));
+	}
+
+	// if(type == POW)
+	// {
+	// 	return op(
+	// }
+	//
+
 
 	return 0;
 }
@@ -85,6 +111,35 @@ diff_node_t* differentiate(diff_node_t* node)
 		default:
 			return 0;
 	}
+}
+
+diff_node_t* optimize(diff_node_t* node)
+{
+	if(node->type != NODE_FUNCTION)
+	{
+		return node;
+	}
+	
+	switch(node->value.op_type)
+	{
+		case POW:
+			if(node->right->type == NODE_NUMBER && node->right->value.number == 1)
+			{
+				return C(node->left);
+			}
+			break;
+		case MUL:
+			if(node->right->type == NODE_NUMBER && node->right->value.number == 1)
+				return C(node->left);
+
+			if(node->left->type == NODE_NUMBER && node->left->value.number == 1)
+				return C(node->right);
+			break;
+		default:
+			break;
+	}
+	
+	return node;
 }
 
 #undef D

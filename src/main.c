@@ -30,9 +30,13 @@ int main()
 	draw_tree(tree, "normal.png");
 
 	diff_node_t* diff_tree = differentiate(tree);
+	diff_node_t* optimized_tree = optimize(diff_tree);
+
 	draw_tree(diff_tree, "diffed.png");
+	draw_tree(optimized_tree, "optimized.png");
 	system("imv normal.png & ");
-	system("imv diffed.png");
+	system("imv diffed.png &");
+	system("imv optimized.png");
 
 	return 0;
 }
