@@ -14,6 +14,7 @@
 	X(COS)	\
 	X(TG)	\
 	X(CTG)	\
+	X(LN)	\
 	// X(ARCSIN)	\
 	// X(ARCCOS)	\
 	// X(ARCTG)	\
@@ -67,3 +68,4 @@ diff_node_t* node_copy(diff_node_t* node);
 diff_node_t* node_create_num(char *value);
 diff_node_t* node_create_func(char *value);
 diff_node_t* node_create_op(char *op);
+diff_node_t* node_create_num_d(double value);

@@ -19,6 +19,8 @@ prepare:
 	mkdir -p ${OUTDIR} 
 
 clean:
+	latexmk -c
+	rm dump*
 	rm -rf ${OUTDIR}/*
 
 all: prepare main 

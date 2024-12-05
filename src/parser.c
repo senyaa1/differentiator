@@ -45,21 +45,25 @@ diff_node_t* node_create()
 
 diff_node_t* node_copy(diff_node_t* node)
 {
+	if(!node) return 0;
+
 	diff_node_t* new_node = (diff_node_t*)calloc(1, sizeof(diff_node_t));
 	memcpy(new_node, node, sizeof(diff_node_t));
 	return new_node;
 }
 
-diff_node_t* node_create_num(char *value)
+diff_node_t* node_create_num_d(double value)
 {
 	diff_node_t* node = node_create();
-
 	node->type = NODE_NUMBER;
-
-	char* end = 0;
-	node->value.number = strtod(value, &end);
-
+	node->value.number = value;
 	return node;
+}
+
+diff_node_t* node_create_num(char *value)
+{
+	char* end = 0;
+	return node_create_num_d(strtod(value, &end));
 }
 
 diff_node_t* node_create_var(char *value)
@@ -133,7 +137,8 @@ diff_node_t* parse(lexer_t *lexer)
 		lexer->pos++;
 		diff_node_t* node = parse_expression(lexer);
 
-		if (strcmp(current_token(lexer), ")") != 0) 
+		char* next_token = current_token(lexer);
+		if (next_token && strcmp(next_token, ")") != 0) 
 		{
 			fprintf(stderr, "Expected ')'\n");
 			return 0;
@@ -150,15 +155,18 @@ diff_node_t* parse(lexer_t *lexer)
 		lexer->pos++;
 
 		// no ( => variable
-		if (strcmp(current_token(lexer), "(") != 0) 
+		char* next_token = current_token(lexer);
+		if (next_token && strcmp(next_token, "(") != 0 || !next_token) 
 		{
+			printf("var: %s\n", func);
 			return node_create_var(token);
 		}
 
 		lexer->pos++;
 		diff_node_t* arg = parse_expression(lexer);
 
-		if (strcmp(current_token(lexer), ")") != 0) 
+		next_token = current_token(lexer);
+		if (next_token && strcmp(next_token, ")") != 0) 
 		{
 			fprintf(stderr, "Expected ')'\n");
 			return 0;
