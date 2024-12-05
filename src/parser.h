@@ -61,3 +61,8 @@ struct diff_node
 
 diff_node_t* parse_expression(lexer_t *lexer);
 char* match_operation(math_func_t op);
+
+diff_node_t* node_create();
+diff_node_t* node_copy(diff_node_t* node);
+diff_node_t* node_create_num(char *value);
+diff_node_t* node_create_op(char *op);

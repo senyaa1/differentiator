@@ -28,7 +28,7 @@ static Agnode_t* render_node(Agraph_t* g, diff_node_t* node)
 	{
 		case NODE_NUMBER:
 			asprintf(&label, "%g", node->value.number);
-			agsafeset(root, "shape", "green", "");
+			agsafeset(root, "color", "green", "");
 			break;
 		case NODE_FUNCTION:
 			asprintf(&label, "%s", match_operation(node->value.op_type));

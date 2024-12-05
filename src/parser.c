@@ -43,6 +43,13 @@ diff_node_t* node_create()
 	return node;
 }
 
+diff_node_t* node_copy(diff_node_t* node)
+{
+	diff_node_t* new_node = (diff_node_t*)calloc(1, sizeof(diff_node_t));
+	memcpy(new_node, node, sizeof(diff_node_t));
+	return new_node;
+}
+
 diff_node_t* node_create_num(char *value)
 {
 	diff_node_t* node = node_create();
