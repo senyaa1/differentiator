@@ -15,7 +15,7 @@ static void ensure_allocated(buf_writer_t* writer, size_t n)
 	}
 }
 
-static void bufcpy(buf_writer_t* writer, const char* string)
+void bufcpy(buf_writer_t* writer, const char* string)
 {
 	size_t len = strlen(string);
 	ensure_allocated(writer, len);
@@ -32,7 +32,7 @@ static void bufncpy(buf_writer_t* writer, const char* string, size_t len)
 }
 
 
-static diff_node_t* tex_dump_recursive(diff_node_t* node, buf_writer_t* writer)
+static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 {
 	if(!node) return 0;
 
@@ -51,32 +51,32 @@ static diff_node_t* tex_dump_recursive(diff_node_t* node, buf_writer_t* writer)
 			switch(node->value.op_type)
 			{
 				case ADD:
-					tex_dump_recursive(node->left, writer);
+					tex_dump_recursive(writer, node->left);
 					bufcpy(writer, " + ");
-					tex_dump_recursive(node->right, writer);
+					tex_dump_recursive(writer, node->right);
 					break;
 				case SUB:
-					tex_dump_recursive(node->left, writer);
+					tex_dump_recursive(writer, node->left);
 					bufcpy(writer, " - ");
-					tex_dump_recursive(node->right, writer);
+					tex_dump_recursive(writer, node->right);
 					break;
 				case MUL:
-					tex_dump_recursive(node->left, writer);
+					tex_dump_recursive(writer, node->left);
 					bufcpy(writer, " \\cdot ");
-					tex_dump_recursive(node->right, writer);
+					tex_dump_recursive(writer, node->right);
 					break;
 				case DIV:
 					bufcpy(writer, "\\frac{");
-					tex_dump_recursive(node->left, writer);
+					tex_dump_recursive(writer, node->left);
 					bufcpy(writer, "}{");
-					tex_dump_recursive(node->right, writer);
+					tex_dump_recursive(writer, node->right);
 					bufcpy(writer, "}");
 					break;
 				case POW:
 					bufcpy(writer, "{");
-					tex_dump_recursive(node->left, writer);
+					tex_dump_recursive(writer, node->left);
 					bufcpy(writer, "}^{");
-					tex_dump_recursive(node->right, writer);
+					tex_dump_recursive(writer, node->right);
 					bufcpy(writer, "}");
 					break;
 			}
@@ -88,20 +88,28 @@ static diff_node_t* tex_dump_recursive(diff_node_t* node, buf_writer_t* writer)
 	return 0;
 }
 
+void tex_dump_equation(buf_writer_t* writer, diff_node_t* node)
+{
+	bufcpy(writer, "\n\\begin{equation*}\n");
+	tex_dump_recursive(writer, node);
+	bufcpy(writer, "\n\\end{equation*}\n");
+}
 
-char* tex_dump(diff_node_t* tree)
+buf_writer_t tex_init(diff_node_t* tree)
 {
 	buf_writer_t writer = { writer.buf = (char*)calloc(DEFAULT_TEX_ALLOC, sizeof(char)), .buf_len = DEFAULT_TEX_ALLOC};
 
-	bufcpy(&writer, "\\documentclass{article}\n");
-	bufcpy(&writer, "\\usepackage{amsmath,breqn}\n");
+	bufcpy(&writer, "\\documentclass[12pt,a4paper]{extreport}\n");
+	bufcpy(&writer, "\\input{style}\n");
 	bufcpy(&writer, "\\begin{document}\n");
-	bufcpy(&writer, "\\begin{dmath*}\n");
-	tex_dump_recursive(tree, &writer);
-	bufcpy(&writer, "\n\\end{dmath*}\n");
-	bufcpy(&writer, "\\end{document}\n");
-	
-	writer.buf = (char*)realloc(writer.buf, (writer.cursor + 1)* sizeof(char));
-	writer.buf[writer.cursor] = '\x00';
-	return writer.buf;
+	return writer;
+
+}
+
+char* tex_end(buf_writer_t* writer)
+{
+	bufcpy(writer, "\\end{document}\n");
+	writer->buf = (char*)realloc(writer->buf, (writer->cursor + 1)* sizeof(char));
+	writer->buf[writer->cursor] = '\x00';
+	return writer->buf;
 }

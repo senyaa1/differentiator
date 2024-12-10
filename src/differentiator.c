@@ -3,8 +3,9 @@
 
 #include "parser.h"
 #include "differentiator.h"
+#include "tex.h"
 
-#define D(NODE)	differentiate(NODE)
+#define D(NODE)	differentiate(NODE, writer)
 #define C(NODE)	node_copy(NODE)
 
 static diff_node_t* f(char* func, diff_node_t* left, diff_node_t* right)
@@ -25,7 +26,7 @@ static diff_node_t* op(char* op, diff_node_t* left, diff_node_t* right)
 	return node;
 }
 
-static diff_node_t* diff_function(diff_node_t* node)
+static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 {
 	math_func_t type = node->value.op_type;
 
@@ -116,21 +117,6 @@ static diff_node_t* diff_function(diff_node_t* node)
 
 
 	return 0;
-}
-
-diff_node_t* differentiate(diff_node_t* node)
-{
-	switch(node->type)
-	{
-		case NODE_NUMBER:	
-			return node_create_num_d(0);
-		case NODE_FUNCTION:
-			return diff_function(node);
-		case NODE_VARIABLE:
-			return node_create_num_d(1);
-		default:
-			return 0;
-	}
 }
 
 static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_cnt)
@@ -233,20 +219,32 @@ static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_c
 	return node;
 }
 
-
-diff_node_t* optimize(diff_node_t* tree)
+diff_node_t* differentiate(diff_node_t* node, buf_writer_t* writer)
 {
+	switch(node->type)
+	{
+		case NODE_NUMBER:	
+			return node_create_num_d(0);
+		case NODE_FUNCTION:
+			return diff_function(node, writer);
+		case NODE_VARIABLE:
+			return node_create_num_d(1);
+		default:
+			return 0;
+	}
+}
+
+diff_node_t* optimize(diff_node_t* tree, buf_writer_t* writer)
+{
+	bufcpy(writer, "Товарищи, приступаем к следующей части нашего семинара. Давайте немного упростим данное выражение.\n");
+
 	size_t optimization_cnt = 0;
 	do 
 	{
 		optimization_cnt = 0;
 		tree = optimize_recursive(tree, &optimization_cnt);
 	} while (optimization_cnt > 0);
-
+  
 	return tree;
 }
 
-
-#undef D
-#undef NODE_FUNC
-#undef NODE_OP
