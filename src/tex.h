@@ -16,4 +16,4 @@ buf_writer_t tex_init(diff_node_t* tree);
 char* tex_end(buf_writer_t* writer);
 char* tex_dump(diff_node_t* tree);
 void bufcpy(buf_writer_t* writer, const char* string);
-void tex_dump_equation(buf_writer_t* writer, diff_node_t* node);
+void tex_dump_equation(buf_writer_t* writer, diff_node_t* node, char* preamble);

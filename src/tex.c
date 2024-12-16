@@ -36,7 +36,6 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 {
 	if(!node) return 0;
 
-
 	char* num_str = 0;
 	switch(node->type)
 	{
@@ -79,6 +78,43 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 					tex_dump_recursive(writer, node->right);
 					bufcpy(writer, "}");
 					break;
+				case LOG:
+					bufcpy(writer, "\\log_(");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, "}(");
+					tex_dump_recursive(writer, node->right);
+					bufcpy(writer, "}");
+					break;
+				case SIN:
+					bufcpy(writer, "\\sin(");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, ")");
+					break;
+				case COS:
+					bufcpy(writer, "\\cos(");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, ")");
+					break;
+				case TG:
+					bufcpy(writer, "\\tg(");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, ")");
+					break;
+				case CTG:
+					bufcpy(writer, "\\ctg(");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, ")");
+					break;
+				case LN:
+					bufcpy(writer, "\\ln(");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, ")");
+					break;
+				case SQRT:
+					bufcpy(writer, "\\sqrt{");
+					tex_dump_recursive(writer, node->left);
+					bufcpy(writer, "}");
+					break;
 			}
 			break;
 		default:
@@ -88,9 +124,12 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 	return 0;
 }
 
-void tex_dump_equation(buf_writer_t* writer, diff_node_t* node)
+void tex_dump_equation(buf_writer_t* writer, diff_node_t* node, char* preamble)
 {
 	bufcpy(writer, "\n\\begin{equation*}\n");
+
+	if(preamble) bufcpy(writer, preamble);
+
 	tex_dump_recursive(writer, node);
 	bufcpy(writer, "\n\\end{equation*}\n");
 }
@@ -101,7 +140,11 @@ buf_writer_t tex_init(diff_node_t* tree)
 
 	bufcpy(&writer, "\\documentclass[12pt,a4paper]{extreport}\n");
 	bufcpy(&writer, "\\input{style}\n");
+	bufcpy(&writer, "\\title{<<Самостоятельная работа по подготовке к ВПР 5-го класса>>}\n");
 	bufcpy(&writer, "\\begin{document}\n");
+	bufcpy(&writer, "\\maketitle\n");
+	bufcpy(&writer, "\\pagebreak\n");
+
 	return writer;
 
 }

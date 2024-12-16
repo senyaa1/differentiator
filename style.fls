@@ -1,4 +1,4 @@
-PWD /home/senyaa/mipt/ded/differentiator
+PWD /home/senyaa/ded/differentiator
 INPUT /var/lib/texmf/web2c/luahbtex/lualatex.fmt
 INPUT ./style.tex
 OUTPUT style.log

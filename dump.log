@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024/Arch Linux)  (format=lualatex 2024.12.6)  7 DEC 2024 00:49
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024/Arch Linux)  (format=lualatex 2024.10.1)  14 DEC 2024 15:45
  restricted system commands enabled.
  file:line:error style messages enabled.
 **dump.tex
@@ -1031,43 +1031,43 @@ Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
 ) (./dump.aux)
 \openout1 = dump.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
 .
 
 (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
-LaTeX Font Info:    ... okay on input line 3.
-Package nag Info: pgf.sty is broken: disabling dollar check on input line 3.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+Package nag Info: pgf.sty is broken: disabling dollar check on input line 4.
 Package nag Info: Command \frontmatter not defined, skipping amendment on input
- line 3.
+ line 4.
 Package nag Info: Command \mainmatter not defined, skipping amendment on input 
-line 3.
+line 4.
 Package nag Info: Command \backmatter not defined, skipping amendment on input 
-line 3.
+line 4.
 Package nag Info: Command \RaggedLeft not defined, skipping amendment on input 
-line 3.
+line 4.
 Package nag Info: Command \RaggedRight not defined, skipping amendment on input
- line 3.
+ line 4.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1114,56 +1114,56 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 3.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 3.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 3.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 3.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 3.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 3.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 3.
-LaTeX Font Info:    Redeclaring math accent \check on input line 3.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 3.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 3.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 3.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 3.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 3.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 4.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 4.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 4.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 4.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 4.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 4.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 4.
+LaTeX Font Info:    Redeclaring math accent \check on input line 4.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 4.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 4.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 4.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 4.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 4.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 3.
+(Font)              `operators' in the math version `normal' on input line 4.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/STIX(0)/m/n on input line 3.
+(Font)                  OT1/cmr/m/n --> TU/STIX(0)/m/n on input line 4.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 3.
+(Font)              `operators' in the math version `bold' on input line 4.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/STIX(0)/m/n on input line 3.
+(Font)                  OT1/cmr/bx/n --> TU/STIX(0)/m/n on input line 4.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/STIX(0)/m/n --> TU/STIX(0)/m/n on input line 3.
+(Font)                  TU/STIX(0)/m/n --> TU/STIX(0)/m/n on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/STIX(0)/m/it on input line 3.
+(Font)                  OT1/cmr/m/it --> TU/STIX(0)/m/it on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/STIX(0)/b/n on input line 3.
+(Font)                  OT1/cmr/bx/n --> TU/STIX(0)/b/n on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 3.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 3.
+(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 4.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/STIX(0)/m/n --> TU/STIX(0)/b/n on input line 3.
+(Font)                  TU/STIX(0)/m/n --> TU/STIX(0)/b/n on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/STIX(0)/b/it on input line 3.
+(Font)                  OT1/cmr/bx/it --> TU/STIX(0)/b/it on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 3.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 4.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/b/n on input line 3.
+(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/b/n on input line 4.
 \c@lstlisting=\count353
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1187,48 +1187,51 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 3.
+Package hyperref Info: Link coloring ON on input line 4.
  (./dump.out)
 (./dump.out)
 \@outlinefile=\write4
 
 \openout4 = dump.out
 Package nag Info: Command \captionabove not defined, skipping amendment on inpu
-t line 3.
+t line 4.
 Package nag Info: Command \captionbelow not defined, skipping amendment on inpu
-t line 3.
+t line 4.
 Package nag Info: Command \hc@caption not defined, skipping amendment on input 
-line 3.
+line 4.
 Package nag Info: Command \topcaption not defined, skipping amendment on input 
-line 3.
+line 4.
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
 uage rus
-LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (1309.78387pt too wide) detected at line 17
-[] \OMS/cmsy/m/n/12  [] \OT1/cmr/m/n/12 + 1337 + [] \OMS/cmsy/m/n/12  [] \OT1
-/cmr/m/n/12 + 0
- []
 
+LaTeX Warning: No \author given.
 
-Overfull \hbox (509.03036pt too wide) detected at line 22
-[] \OMS/cmsy/m/n/12  [] \OT1/cmr/m/n/12 + 1337 + [] \OMS/cmsy/m/n/12  []
+luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
+uage rus [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (16.7373pt too wide) in paragraph at lines 20--22
+\TU/STIX(1)/m/n/12 Товарищи, приступаем к следующе
+й части нашего урока. Давайте немного упро
+стим данное выражение. 
  []
 
 No complaints by nag.
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
 uage rus
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
-uage rus [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./dump.aux)
+uage rus
+warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
+[1] (./dump.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -1238,27 +1241,24 @@ Package rerunfilecheck Info: File `dump.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 30001 strings out of 476447
+ 30025 strings out of 476447
  100000,1977958 words of node,token memory allocated
  523 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 10 attribute, 56 glue_spec
 , 10 attribute_list, 2 write nodes
-   avail lists: 1:7,2:456,3:616,4:15,5:534,6:18,7:4678,8:543,9:2208,10:1
- 51351 multiletter control sequences out of 65536+600000
- 58 fonts using 10097551 bytes
- 104i,10n,100p,1546b,343s stack positions out of 10000i,1000n,20000p,200000b,200000s
+   avail lists: 1:7,2:140,3:112,4:21,5:74,6:12,7:1038,8:101,9:162,10:9,11:3
+ 51375 multiletter control sequences out of 65536+600000
+ 80 fonts using 13635575 bytes
+ 104i,6n,100p,540b,371s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/stix/STIX-Regular.otf></usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb>
-Output written on dump.pdf (1 page, 71265 bytes).
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on dump.pdf (2 pages, 46818 bytes).
 
-PDF statistics: 55 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+PDF statistics: 46 PDF objects out of 1000 (max. 8388607)
+ 33 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 

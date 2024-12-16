@@ -100,21 +100,46 @@ static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 
 	if(type == POW)
 	{
-		if(node->left->type == NODE_VARIABLE)
-		{
+		// if(node->left->type == NODE_VARIABLE)
+		// {
+		// 	return op("*",	
+		// 			C(node->right), 
+		// 			op("^", C(node->left), 
+		// 				op("-", node->right, node_create_num_d(1))
+		// 			)
+		// 		);
+		// }
+
+		// if(node->left->type == NODE_FUNCTION)
+		// {
 			return op("*",	
-					C(node->right), 
-					op("^", C(node->left), 
-						op("-", node->right, node_create_num_d(1))
+					C(node),
+					op("+", 
+						op("*",
+							D(node->right),
+							f("ln", node->left, 0)),
+						op("*", 
+							node->right,
+							op("/", D(node->left), C(node->left)))
 					)
+							
 				);
-		}
-		return op("*",	
-				C(node), 
-				D(op("*", node->right, f("ln", node->left, 0))));
+		// }
+
+		// return op("*",	
+		// 		C(node), 
+		// 		D(op("*", node->right, f("ln", node->left, 0))));
 				
 	}
 
+	if(type == SQRT)
+	{
+		return op("/", 
+			D(node->left),
+				op("*",	
+					node_create_num_d(2), 
+					C(node)));
+	}
 
 	return 0;
 }
@@ -127,7 +152,8 @@ static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_c
 	{
 		return node;
 	}
-	
+
+
 	switch(node->value.op_type)
 	{
 		case ADD:
@@ -236,7 +262,7 @@ diff_node_t* differentiate(diff_node_t* node, buf_writer_t* writer)
 
 diff_node_t* optimize(diff_node_t* tree, buf_writer_t* writer)
 {
-	bufcpy(writer, "Товарищи, приступаем к следующей части нашего семинара. Давайте немного упростим данное выражение.\n");
+	bufcpy(writer, "Товарищи, приступаем к следующей части нашего урока. Давайте немного упростим данное выражение.\n");
 
 	size_t optimization_cnt = 0;
 	do 

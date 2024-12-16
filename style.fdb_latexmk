@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1733520425.17283 "style.tex" "style.pdf" "style" 1733520426.08161 2
+["pdflatex"] 1734179814.10846 "style.tex" "style.pdf" "style" 1734180094.60051 2
   "/usr/share/texmf-dist/tex/generic/unicode-data/CaseFolding.txt" 1727349926 84870 f44cf62b0cc7d09fac36984c80928834 ""
   "/usr/share/texmf-dist/tex/generic/unicode-data/PropList.txt" 1727349926 136397 23f7d59fe7f04e06fe7dc322d5a4d4bd ""
   "/usr/share/texmf-dist/tex/generic/unicode-data/ScriptExtensions.txt" 1727349926 22174 69a890ea69caa59c8b207a0fa54e71c1 ""
@@ -53,9 +53,9 @@
   "/usr/share/texmf-dist/tex/luatex/luaotfload/luaotfload-tounicode.lua" 1727349926 7528 245271ce518c136c96f22fee6cb810ab ""
   "/usr/share/texmf-dist/tex/luatex/luaotfload/luaotfload-unicode.lua" 1727349926 7917 cebc6454abe34f2fe1c1248f8b2453da ""
   "/usr/share/texmf-dist/tex/luatex/luaotfload/luaotfload.lua" 1727349926 13565 50482dad4c221a79dbdbb982122baf8c ""
-  "/var/lib/texmf/web2c/luahbtex/lualatex.fmt" 1733515977 12260652 f97beae97034f9ca853652db732c349a ""
-  "style.aux" 1733520421.75028 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "style.tex" 1733519728.45232 2120 b84ac02e3676cf7c9c2eeae5ce44f9fa ""
+  "/var/lib/texmf/web2c/luahbtex/lualatex.fmt" 1727766057 12261825 ce174a60dc0500190d6bc54610b97ac0 ""
+  "style.aux" 1734179814.10667 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "style.tex" 1733828119.47671 2120 b84ac02e3676cf7c9c2eeae5ce44f9fa ""
   (generated)
   "style.aux"
   "style.log"
