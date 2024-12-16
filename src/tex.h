@@ -1,16 +1,9 @@
 #pragma once
 
 #include "parser.h"
+#include "buffer.h"
 
 static const size_t DEFAULT_TEX_ALLOC = 256;
-
-typedef struct buf_writer
-{
-	char* buf;
-	size_t buf_len;
-	size_t cursor;
-} buf_writer_t;
-
 
 buf_writer_t tex_init(diff_node_t* tree);
 char* tex_end(buf_writer_t* writer);

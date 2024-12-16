@@ -1,39 +1,25 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-
 
 #include "parser.h"
 #include "tex.h"
 
-static void ensure_allocated(buf_writer_t* writer, size_t n)
-{
-	if(writer->cursor + n >= writer->buf_len - 1)
-	{
-		writer->buf_len *= 2;
-		writer->buf = (char*)realloc(writer->buf, writer->buf_len * sizeof(char));
-	}
-}
-
-void bufcpy(buf_writer_t* writer, const char* string)
-{
-	size_t len = strlen(string);
-	ensure_allocated(writer, len);
-
-	memcpy(writer->buf + writer->cursor, string, len);
-	writer->cursor += len;
-}
-
-static void bufncpy(buf_writer_t* writer, const char* string, size_t len)
-{
-	ensure_allocated(writer, len);
-	memcpy(writer->buf + writer->cursor, string, len);
-	writer->cursor += len;
-}
-
-
 static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 {
+	#define TEX_OP(OP_NAME, OP)					\
+		case OP_NAME:						\
+			tex_dump_recursive(writer, node->left);		\
+			bufcpy(writer, OP);				\
+			tex_dump_recursive(writer, node->right);	\
+			break;						\
+
+	#define TEX_FUNC(FUNC_NAME, FUNC)				\
+		case FUNC_NAME:						\
+			bufcpy(writer, FUNC "(");			\
+			tex_dump_recursive(writer, node->left);	\
+			bufcpy(writer, ")");				\
+			break;						\
+
 	if(!node) return 0;
 
 	char* num_str = 0;
@@ -49,21 +35,15 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 		case NODE_FUNCTION:
 			switch(node->value.op_type)
 			{
-				case ADD:
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, " + ");
-					tex_dump_recursive(writer, node->right);
-					break;
-				case SUB:
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, " - ");
-					tex_dump_recursive(writer, node->right);
-					break;
-				case MUL:
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, " \\cdot ");
-					tex_dump_recursive(writer, node->right);
-					break;
+				TEX_OP(ADD, " + ")
+				TEX_OP(SUB, " - ")
+				TEX_OP(MUL, " \\cdot ")
+				TEX_FUNC(SIN, "\\sin")
+				TEX_FUNC(COS, "\\cos")
+				TEX_FUNC(TG, "\\tg")
+				TEX_FUNC(CTG, "\\ctg")
+				TEX_FUNC(LN, "\\ln")
+
 				case DIV:
 					bufcpy(writer, "\\frac{");
 					tex_dump_recursive(writer, node->left);
@@ -84,31 +64,6 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 					bufcpy(writer, "}(");
 					tex_dump_recursive(writer, node->right);
 					bufcpy(writer, "}");
-					break;
-				case SIN:
-					bufcpy(writer, "\\sin(");
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, ")");
-					break;
-				case COS:
-					bufcpy(writer, "\\cos(");
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, ")");
-					break;
-				case TG:
-					bufcpy(writer, "\\tg(");
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, ")");
-					break;
-				case CTG:
-					bufcpy(writer, "\\ctg(");
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, ")");
-					break;
-				case LN:
-					bufcpy(writer, "\\ln(");
-					tex_dump_recursive(writer, node->left);
-					bufcpy(writer, ")");
 					break;
 				case SQRT:
 					bufcpy(writer, "\\sqrt{");

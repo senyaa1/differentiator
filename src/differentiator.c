@@ -5,24 +5,28 @@
 #include "differentiator.h"
 #include "tex.h"
 
-#define D(NODE)	differentiate(NODE, writer)
-#define C(NODE)	node_copy(NODE)
+#define D(NODE)					differentiate(NODE, writer)
+#define C(NODE)					node_copy(NODE)
+#define NUM(NUM)				node_create_num_d(NUM)
+#define OP(OPERATION, LEFT, RIGHT)		op(#OPERATION, (LEFT), (RIGHT))
+#define F(FUNCTION, LEFT, RIGHT)		f(#FUNCTION, (LEFT), (RIGHT))
+#define LEFT					node->left
+#define RIGHT					node->right
+
 
 static diff_node_t* f(char* func, diff_node_t* left, diff_node_t* right)
 {
 	diff_node_t* node = node_create_func(func);
-	node->left = left;
-	node->right = right;
-
+	LEFT = left;
+	RIGHT = right;
 	return node;
 }
 
 static diff_node_t* op(char* op, diff_node_t* left, diff_node_t* right)
 {
 	diff_node_t* node = node_create_op(op);
-	node->left = left;
-	node->right = right;
-
+	LEFT = left;
+	RIGHT = right;
 	return node;
 }
 
@@ -30,219 +34,211 @@ static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 {
 	math_func_t type = node->value.op_type;
 
-	if(type == ADD)
+	switch(type)
 	{
-		return op("+", D(node->left), D(node->right));
-	}
 
-	if(type == SUB)
-	{
-		return op("-", D(node->left), D(node->right));
-	}
+		case ADD:
+			return OP(+, D(LEFT), D(RIGHT));
 
-	if(type == MUL)
-	{
-		return op("+",	op("*", D(node->left), C(node->right)), 	
-				op("*", C(node->left), D(node->right)));
-	}
+		case SUB:
+			return OP(-, D(LEFT), D(RIGHT));
 
-	if(type == DIV)
-	{
-		return op("/",	
-				op("-", 
-					op("*", D(node->left), C(node->right)),		
-					op("*", C(node->left), D(node->right))
+		case MUL:
+			return OP(+,	OP(*, D(LEFT), C(RIGHT)), 	
+					OP(*, C(LEFT), D(RIGHT)));
+
+		case DIV:
+			return OP(/,	
+					OP(-, 
+						OP(*, D(LEFT), C(RIGHT)),		
+						OP(*, C(LEFT), D(RIGHT))
 				),
-			op("^", C(node->right), node_create_num_d(2))
-		);
-	}
+				OP(^, C(RIGHT), NUM(2))
+			);
 
-	if(type == SIN)
-	{
-		return op("*", f("cos", C(node->left), 0), D(node->left));
-	}
+		case SIN:
+			return OP(*, F(cos, C(LEFT), 0), D(LEFT));
 
-	if(type == COS)
-	{
-		
-		return op("*",
-				op("*", 
-					f("sin", C(node->left), 0), D(node->left)
+		case COS:
+			return OP(*,
+					OP(*, 
+						F(sin, C(LEFT), 0), 
+						D(LEFT)
 				),
-			node_create_num_d(-1)
-	    );
-	}
+				NUM(-1)
+			);
 
-	if(type == TG)
-	{
-		return op("*",  
-				op("/", 
-					node_create_num_d(1), 
-					op("^", f("cos", C(node->left), 0), node_create_num_d(2))),
-				D(node->left));
-	}
-
-	if(type == CTG)
-	{
-		return op("*",  
-				op("/", 
-					node_create_num_d(-1), 
-					op("^", f("sin", C(node->left), 0), node_create_num_d(2))),
-				D(node->left));
-	}
-
-	if(type == LN)
-	{
-		return	op("/", 
-				D(node->left), 
-				C(node->left));
-	}
-
-	if(type == POW)
-	{
-		// if(node->left->type == NODE_VARIABLE)
-		// {
-		// 	return op("*",	
-		// 			C(node->right), 
-		// 			op("^", C(node->left), 
-		// 				op("-", node->right, node_create_num_d(1))
-		// 			)
-		// 		);
-		// }
-
-		// if(node->left->type == NODE_FUNCTION)
-		// {
-			return op("*",	
-					C(node),
-					op("+", 
-						op("*",
-							D(node->right),
-							f("ln", node->left, 0)),
-						op("*", 
-							node->right,
-							op("/", D(node->left), C(node->left)))
-					)
-							
+		case TG:
+			return OP(*,  
+					OP(/, 
+						NUM(1), 
+						OP(^, F(cos, C(LEFT), 0), 
+							NUM(2))),
+					D(LEFT));
+		case CTG:
+			return OP(*,	OP(/, 
+					NUM(-1), 
+					OP(^, F(sin, C(LEFT), 0),
+						NUM(2))),
+				D(LEFT));
+		case LN:
+			return	OP(/,	D(LEFT), 
+					C(LEFT));
+		case LOG:
+			return OP(/,	F(ln, C(LEFT), 0), 
+					F(ln, C(RIGHT), 0)
 				);
-		// }
+		case POW:
+			if(LEFT->type == NODE_VARIABLE && RIGHT->type == NODE_NUMBER)
+			{
+				return OP(*,	
+						C(RIGHT), 
+						OP(^, C(LEFT), 
+							OP(-, RIGHT, NUM(1))
+						)
+					);
+			}
 
-		// return op("*",	
-		// 		C(node), 
-		// 		D(op("*", node->right, f("ln", node->left, 0))));
-				
+			return OP(*,	
+					C(node),
+					OP(+, 
+						OP(*,
+							D(RIGHT),
+							F(ln, LEFT, 0)),
+						OP(*, 
+							RIGHT,
+							OP(/, D(LEFT),
+								C(LEFT))
+						)
+					)
+				);
+			break;
+		case SQRT:
+			return OP(/,D(LEFT),
+					OP(*,	NUM(2), 
+						C(node)
+					)
+				);
+		default:
+			return 0;
 	}
-
-	if(type == SQRT)
-	{
-		return op("/", 
-			D(node->left),
-				op("*",	
-					node_create_num_d(2), 
-					C(node)));
-	}
-
-	return 0;
 }
+
+#define NUMCMP(NODE, VAL, ACTION)						\
+		if(NODE->type == NODE_NUMBER && NODE->value.number == VAL)	\
+		{								\
+			(*optimization_cnt)++;					\
+			return ACTION;						\
+		}								\
+
 
 static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_cnt)
 {
+	#define PERFORM_OP(TYPE, OPERATION)		case TYPE:								\
+								(*optimization_cnt)++;						\
+								return NUM(LEFT->value.number OPERATION RIGHT->value.number);	\
+
 	if(!node) return 0;
 
 	if(node->type != NODE_FUNCTION)
-	{
 		return node;
-	}
 
-
+	// Trivial (*0, +0, etc)
 	switch(node->value.op_type)
 	{
 		case ADD:
 		case SUB:
-			if(node->right->type == NODE_NUMBER && node->right->value.number == 0)
-			{
-				(*optimization_cnt)++;
-				return C(node->left);
-			}
-			if(node->left->type == NODE_NUMBER && node->left->value.number == 0)
-			{
-				(*optimization_cnt)++;
-				return C(node->right);
-			}
+			NUMCMP(RIGHT, 0, C(LEFT));
+			NUMCMP(LEFT, 0, C(RIGHT));
 			break;
-			
 		case POW:
-			if(node->right->type == NODE_NUMBER && node->right->value.number == 1)
-			{
-				(*optimization_cnt)++;
-				return C(node->left);
-			}
+			NUMCMP(RIGHT, 1, C(LEFT));
 			break;
 		case MUL:
-			if(node->right->type == NODE_NUMBER && node->right->value.number == 1)
-			{
-				(*optimization_cnt)++;
-				return C(node->left);
-			}
+			NUMCMP(RIGHT, 1, C(LEFT));
+			NUMCMP(LEFT, 1, C(RIGHT));
 
-			if(node->left->type == NODE_NUMBER && node->left->value.number == 1)
-			{
-				(*optimization_cnt)++;
-				return C(node->right);
-			}
-
-			if(node->right->type == NODE_NUMBER && node->right->value.number == 0)
-			{
-				(*optimization_cnt)++;
-				return node_create_num_d(0);
-			}
-
-			if(node->left->type == NODE_NUMBER && node->left->value.number == 0)
-			{
-				(*optimization_cnt)++;
-				return node_create_num_d(0);
-			}
-
+			NUMCMP(RIGHT, 0, NUM(0));
+			NUMCMP(LEFT, 0, NUM(0));
 			break;
 		case DIV:
-			if(node->left->type == NODE_NUMBER && node->left->value.number == 1)
-			{
-				(*optimization_cnt)++;
-				return C(node->right);
-			}
+			NUMCMP(LEFT, 1, C(RIGHT));
 			break;
 		default:
 			break;
 	}
 
-	if((node->left && node->right) && node->left->type == NODE_NUMBER && node->right->type == NODE_NUMBER)
-	{
+	// Calculate constants (e.g. 2 + 2)
+	if((LEFT && RIGHT) && LEFT->type == NODE_NUMBER && RIGHT->type == NODE_NUMBER)
+	{					
 		switch(node->value.op_type)
 		{
-			case ADD:
-				(*optimization_cnt)++;
-				return node_create_num_d(node->left->value.number + node->right->value.number);
-			case SUB:
-				(*optimization_cnt)++;
-				return node_create_num_d(node->left->value.number - node->right->value.number);
-			case MUL:
-				(*optimization_cnt)++;
-				return node_create_num_d(node->left->value.number * node->right->value.number);
-			case DIV:
-				(*optimization_cnt)++;
-				return node_create_num_d(node->left->value.number / node->right->value.number);
+			PERFORM_OP(ADD, +)
+			PERFORM_OP(SUB, -)
+			PERFORM_OP(MUL, *)
+			PERFORM_OP(DIV, /)
 			case POW:
 				(*optimization_cnt)++;
-				return node_create_num_d(pow(node->left->value.number, node->right->value.number));
+				return NUM(pow(LEFT->value.number, RIGHT->value.number));
 			default:
 				break;
 		}
-
 	}
 
-	node->right = C(optimize_recursive(node->right, optimization_cnt));
-	node->left = C(optimize_recursive(node->left, optimization_cnt));
+	// Optimize children of the same operations e.g. (mul -> mul)
+	if((LEFT && RIGHT) && (
+			(LEFT->type == NODE_FUNCTION && node->value.op_type == LEFT->value.op_type && RIGHT->type == NODE_NUMBER)	|| 
+			(RIGHT->type == NODE_FUNCTION && node->value.op_type == RIGHT->value.op_type && LEFT->type == NODE_NUMBER))
+	      )
+	{
+		diff_node_t* first_const = 0, *second_const = 0, *func = 0;
+
+		#define TRY_GET_NUM(NODE, CHILD1, CHILD2)			\
+		if(NODE->CHILD1 && NODE->CHILD1->type == NODE_NUMBER)		\
+		{								\
+			second_const = NODE->CHILD1;				\
+			func = NODE->CHILD2;					\
+		}								\
+
+		if(RIGHT->type == NODE_NUMBER)
+		{
+			first_const = RIGHT;
+			TRY_GET_NUM(LEFT, left, right)
+			TRY_GET_NUM(LEFT, right, left)
+		}
+		else
+		{
+			first_const = LEFT;
+			TRY_GET_NUM(RIGHT, left, right)
+			TRY_GET_NUM(RIGHT, right, left)
+		}
+		#undef TRY_GET_NUM
+
+		if(second_const)
+		{
+			#define OPT_OP(OPERATION_NAME, OPERATION)										\
+				case OPERATION_NAME:												\
+					(*optimization_cnt)++;											\
+					return OP(OPERATION, C(func), NUM(first_const->value.number OPERATION second_const->value.number));	\
+
+			switch(node->value.op_type)
+			{
+				OPT_OP(ADD, +)
+				OPT_OP(SUB, -)
+				OPT_OP(DIV, /)
+				OPT_OP(MUL, *)
+				default:
+					break;
+			}
+		}
+	}
+
+
+	RIGHT = C(optimize_recursive(RIGHT, optimization_cnt));
+	LEFT = C(optimize_recursive(LEFT, optimization_cnt));
 
 	return node;
+	#undef PERFORM_OP
 }
 
 diff_node_t* differentiate(diff_node_t* node, buf_writer_t* writer)
@@ -250,11 +246,11 @@ diff_node_t* differentiate(diff_node_t* node, buf_writer_t* writer)
 	switch(node->type)
 	{
 		case NODE_NUMBER:	
-			return node_create_num_d(0);
+			return NUM(0);
 		case NODE_FUNCTION:
 			return diff_function(node, writer);
 		case NODE_VARIABLE:
-			return node_create_num_d(1);
+			return NUM(1);
 		default:
 			return 0;
 	}
@@ -262,7 +258,7 @@ diff_node_t* differentiate(diff_node_t* node, buf_writer_t* writer)
 
 diff_node_t* optimize(diff_node_t* tree, buf_writer_t* writer)
 {
-	bufcpy(writer, "Товарищи, приступаем к следующей части нашего урока. Давайте немного упростим данное выражение.\n");
+	bufcpy(writer, "Давайте немного упростим данное выражение.\n");
 
 	size_t optimization_cnt = 0;
 	do 
