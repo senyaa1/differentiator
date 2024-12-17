@@ -43,6 +43,15 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 				TEX_FUNC(TG, "\\tg")
 				TEX_FUNC(CTG, "\\ctg")
 				TEX_FUNC(LN, "\\ln")
+				TEX_FUNC(ARCSIN, "\\arcsin")
+				TEX_FUNC(ARCCOS, "\\arccos")
+				TEX_FUNC(ARCTG, "\\arctg")
+				TEX_FUNC(ARCCTG, "\\arcctg")
+
+				TEX_FUNC(SH, "\\sh")
+				TEX_FUNC(CH, "\\ch")
+				TEX_FUNC(TH, "\\th")
+				TEX_FUNC(CTH, "\\cth")
 
 				case DIV:
 					bufcpy(writer, "\\frac{");
@@ -52,8 +61,12 @@ static diff_node_t* tex_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 					bufcpy(writer, "}");
 					break;
 				case POW:
+					if(node->left->type == NODE_FUNCTION)
+						bufcpy(writer, "(");
 					bufcpy(writer, "{");
 					tex_dump_recursive(writer, node->left);
+					if(node->left->type == NODE_FUNCTION)
+						bufcpy(writer, ")");
 					bufcpy(writer, "}^{");
 					tex_dump_recursive(writer, node->right);
 					bufcpy(writer, "}");

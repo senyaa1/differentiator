@@ -7,6 +7,16 @@
 #include "parser.h"
 #include "lexer.h"
 
+void node_free(diff_node_t* node)
+{
+	if(!node)	return;
+
+	node_free(node->left);
+	node_free(node->right);
+
+	free(node);
+}
+
 char* match_operation(math_func_t op)
 {
 	#define X(NAME)		\
@@ -114,8 +124,6 @@ diff_node_t* node_create_op(char *op)
 
 	return node;
 }
-
-
 
 diff_node_t* parse(lexer_t *lexer) 
 {

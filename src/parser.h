@@ -15,14 +15,14 @@
 	X(TG)	\
 	X(CTG)	\
 	X(LN)	\
-	// X(ARCSIN)	\
-	// X(ARCCOS)	\
-	// X(ARCTG)	\
-	// X(ARCCTG)	\
-	// X(SH	)	\
-	// X(CH	)	\
-	// X(TH	)	\
-	// X(CTH)		\
+	X(ARCSIN)	\
+	X(ARCCOS)	\
+	X(ARCTG)	\
+	X(ARCCTG)	\
+	X(SH	)	\
+	X(CH	)	\
+	X(TH	)	\
+	X(CTH)		\
 	// X(ARCSH)	\
 	// X(ARCCH)	\
 	// X(ARCTH)	\
@@ -69,3 +69,4 @@ diff_node_t* node_create_num(char *value);
 diff_node_t* node_create_func(char *value);
 diff_node_t* node_create_op(char *op);
 diff_node_t* node_create_num_d(double value);
+void node_free(diff_node_t* node);

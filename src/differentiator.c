@@ -94,7 +94,20 @@ static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 				return OP(*,	
 						C(RIGHT), 
 						OP(^, C(LEFT), 
-							OP(-, RIGHT, NUM(1))
+							OP(-, C(RIGHT), NUM(1))
+						)
+					);
+			}
+
+			if(LEFT->type == NODE_FUNCTION && RIGHT->type == NODE_NUMBER)
+			{
+				return OP(*,	C(RIGHT),
+						OP(*,	
+							D(LEFT),
+							OP(^, 
+								C(LEFT),
+								node_create_num_d(RIGHT->value.number - 1)
+							)
 						)
 					);
 			}
@@ -104,9 +117,9 @@ static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 					OP(+, 
 						OP(*,
 							D(RIGHT),
-							F(ln, LEFT, 0)),
+							F(ln, C(LEFT), 0)),
 						OP(*, 
-							RIGHT,
+							C(RIGHT),
 							OP(/, D(LEFT),
 								C(LEFT))
 						)
@@ -114,11 +127,58 @@ static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 				);
 			break;
 		case SQRT:
-			return OP(/,D(LEFT),
+			return OP(/,	D(LEFT),
 					OP(*,	NUM(2), 
 						C(node)
 					)
 				);
+
+		case ARCSIN:
+			return OP(/,	D(LEFT),
+						F(sqrt, OP(-,	
+								node_create_num_d(1),
+								OP(^, C(LEFT), node_create_num_d(2))
+							),0
+						)
+					);
+							
+		case ARCCOS:
+			return OP(/,	OP(*, node_create_num_d(-1), D(LEFT)),
+						F(sqrt, OP(-,	
+								node_create_num_d(1),
+								OP(^, C(LEFT), node_create_num_d(2))
+							),0
+						)
+					);
+		case ARCTG:
+			return OP(/,	D(LEFT),
+						OP(+,	
+								node_create_num_d(1),
+								OP(^, C(LEFT), node_create_num_d(2))
+						)
+					);
+		case ARCCTG:
+			return OP(/,	OP(*, node_create_num_d(-1), D(LEFT)),
+						OP(+,	
+								node_create_num_d(1),
+								OP(^, C(LEFT), node_create_num_d(2))
+						)
+					);
+
+		case SH:
+			return OP(*, F(ch, C(LEFT), 0), D(LEFT));
+		case CH:
+			return OP(*, F(sh, C(LEFT), 0), D(LEFT));
+
+		case TH:
+			return OP(/,	D(LEFT),
+					OP(^, F(ch, C(LEFT), 0), node_create_num_d(2))
+					);
+		case CTH:
+			return OP(*, node_create_num_d(-1), 
+					OP(/,	D(LEFT),
+					OP(^, F(ch, C(LEFT), 0), node_create_num_d(2))
+					));
 		default:
 			return 0;
 	}
@@ -131,6 +191,9 @@ static diff_node_t* diff_function(diff_node_t* node, buf_writer_t* writer)
 			return ACTION;						\
 		}								\
 
+
+#define ISNUM(NODE)	(NODE->type == NODE_NUMBER)
+#define ISFUNC(NODE)	(NODE->type == NODE_NUMBER)
 
 static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_cnt)
 {
@@ -169,7 +232,7 @@ static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_c
 	}
 
 	// Calculate constants (e.g. 2 + 2)
-	if((LEFT && RIGHT) && LEFT->type == NODE_NUMBER && RIGHT->type == NODE_NUMBER)
+	if((LEFT && RIGHT) && ISNUM(LEFT) && ISNUM(RIGHT))
 	{					
 		switch(node->value.op_type)
 		{
@@ -187,9 +250,8 @@ static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_c
 
 	// Optimize children of the same operations e.g. (mul -> mul)
 	if((LEFT && RIGHT) && (
-			(LEFT->type == NODE_FUNCTION && node->value.op_type == LEFT->value.op_type && RIGHT->type == NODE_NUMBER)	|| 
-			(RIGHT->type == NODE_FUNCTION && node->value.op_type == RIGHT->value.op_type && LEFT->type == NODE_NUMBER))
-	      )
+			(ISFUNC(LEFT) && ISNUM(RIGHT) && node->value.op_type == LEFT->value.op_type 	|| 
+			(ISFUNC(RIGHT) && ISNUM(LEFT) && node->value.op_type == RIGHT->value.op_type))))
 	{
 		diff_node_t* first_const = 0, *second_const = 0, *func = 0;
 
@@ -234,8 +296,8 @@ static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_c
 	}
 
 
-	RIGHT = C(optimize_recursive(RIGHT, optimization_cnt));
-	LEFT = C(optimize_recursive(LEFT, optimization_cnt));
+	RIGHT = optimize_recursive(RIGHT, optimization_cnt);
+	LEFT = optimize_recursive(LEFT, optimization_cnt);
 
 	return node;
 	#undef PERFORM_OP

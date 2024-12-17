@@ -15,7 +15,10 @@ int main()
 	// fgets(expression, INPUT_BUF_SZ, stdin);
 
 	// const char *expression = "((2 + 5) * x * (x - 4) / (300 * x + (100 / (400 / (x - 10000 / x^2 - 5 * x)))) * ((2 + 5) * x * (x - 4) / (300 * x + (100 / (400 / (x - 10000 / x^2 - 5 * x)))) + 1337";
-	const char *expression = "sin(5 * x^2) + cos(2 * x) ^ 3";
+	// const char *expression = "sin(5 * x^2) + cos(2 * x) ^ 3";
+	// const char *expression = "arctg(x)";
+	const char *expression = "sin(15 * x ^ 3) + cos (20 * x + 1) ^ 3";
+	// const char *expression = "tg(x)";
 	
 	lexer_t* lexer = lex(expression);
 	diff_node_t* tree = parse_expression(lexer);
@@ -34,9 +37,9 @@ int main()
 	
 	diff_node_t* optimized_tree = optimize(diff_tree, &writer);
 	tex_dump_equation(&writer, diff_tree, "f'_{\\text{упрощённая}} = ");
-	// draw_tree(optimized_tree, "optimized.png");
+	draw_tree(optimized_tree, "optimized.png");
 
-	// system("imv optimized.png &");
+		// system("imv optimized.png &");
 
 	bufcpy(&writer, "\n\nНесложно заметить, что графики выглядят так:\n\n");
 	plot_dump(tree, "функция", "blue", "orig_plot.png");
@@ -57,6 +60,10 @@ int main()
 
 	system("latexmk");
 	free(writer.buf);
+
+	node_free(tree);
+	node_free(diff_tree);
+	node_free(optimized_tree);
 
 	// free(expression);
 

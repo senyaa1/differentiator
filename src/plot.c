@@ -53,10 +53,19 @@ static diff_node_t* plot_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 					break;
 				PLOT_FUNC(SIN, sin)
 				PLOT_FUNC(COS, cos)
-				PLOT_FUNC(TG, tg)
-				PLOT_FUNC(CTG, ctg)
+				PLOT_FUNC(TG, tan)
+				PLOT_FUNC(CTG, tan)
 				PLOT_FUNC(LN, ln)
 				PLOT_FUNC(SQRT, sqrt)
+				PLOT_FUNC(ARCSIN, asin)
+				PLOT_FUNC(ARCCOS, acos)
+				PLOT_FUNC(ARCTG, atan)
+				PLOT_FUNC(ARCCTG, atan)
+
+				PLOT_FUNC(SH, sinh)
+				PLOT_FUNC(CH, cosh)
+				PLOT_FUNC(TH, tanh)
+				PLOT_FUNC(CTH, tanh)
 			}
 			break;
 		default:
