@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024/Arch Linux)  (format=lualatex 2024.12.6)  17 DEC 2024 20:26
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024/Arch Linux)  (format=lualatex 2024.12.6)  17 DEC 2024 20:32
  restricted system commands enabled.
  file:line:error style messages enabled.
-**dump.tex
-(./dump.tex
+**out/dump.tex
+(./out/dump.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 Lua module: luaotfload 2024-02-14 3.28 Lua based OpenType font support
@@ -1302,28 +1302,39 @@ Overfull \hbox (27.28232pt too wide) in paragraph at lines 16--16
 
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
 uage rus
-luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
-uage rus
+Overfull \hbox (701.26607pt too wide) in paragraph at lines 71--71
+\OT1/cmr/m/n/12 = []|$ 
+ []
+
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
 uage rus
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
 uage rus [2]
-<orig_plot.png, id=42, 602.25pt x 451.6875pt>
-File: orig_plot.png Graphic file (type png)
-<use orig_plot.png>
-Package luatex.def Info: orig_plot.png  used on input line 96.
-(luatex.def)             Requested size: 230.46576pt x 172.84915pt.
-<optimized_plot.png, id=43, 602.25pt x 451.6875pt>
-File: optimized_plot.png Graphic file (type png)
-<use optimized_plot.png>
-Package luatex.def Info: optimized_plot.png  used on input line 99.
-(luatex.def)             Requested size: 230.46576pt x 172.84915pt.
+Overfull \hbox (256.82787pt too wide) in paragraph at lines 79--79
+\OT1/cmr/m/n/12 = []|$ 
+ []
 
+luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
+uage rus
+Overfull \hbox (256.82787pt too wide) in paragraph at lines 90--90
+\OT1/cmr/m/n/12 = []|$ 
+ []
+
+<out/orig_plot.png, id=43, 602.25pt x 451.6875pt>
+File: out/orig_plot.png Graphic file (type png)
+<use out/orig_plot.png>
+Package luatex.def Info: out/orig_plot.png  used on input line 96.
+(luatex.def)             Requested size: 230.46576pt x 172.84915pt.
+<out/optimized_plot.png, id=44, 602.25pt x 451.6875pt>
+File: out/optimized_plot.png Graphic file (type png)
+<use out/optimized_plot.png>
+Package luatex.def Info: out/optimized_plot.png  used on input line 99.
+(luatex.def)             Requested size: 230.46576pt x 172.84915pt.
 No complaints by nag.
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
 uage rus
 luaotfload | aux : font no 27 (nil) defines no feature for script latn with lang
-uage rus [3<out/orig_plot.png><out/optimized_plot.png>] (./out/dump.aux)
+uage rus [3<./out/orig_plot.png><./out/optimized_plot.png>] (./out/dump.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -1333,24 +1344,25 @@ Package rerunfilecheck Info: File `dump.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 30788 strings out of 476447
+ 30792 strings out of 476447
  100000,1977958 words of node,token memory allocated
- 822 words of node memory still in use:
-   11 hlist, 2 vlist, 3 rule, 1 local_par, 2 math, 4 glue, 6 kern, 4 penalty, 15
- glyph, 14 attribute, 71 glue_spec, 14 attribute_list, 2 write nodes
-   avail lists: 1:7,2:332,3:275,4:36,5:75,6:75,7:4240,8:33,9:239,10:8,11:18
- 52101 multiletter control sequences out of 65536+600000
+ 3569 words of node memory still in use:
+   39 hlist, 3 vlist, 43 rule, 1 local_par, 2 math, 164 glue, 7 kern, 49 penalty
+, 121 glyph, 45 attribute, 71 glue_spec, 45 attribute_list, 2 write nodes
+   avail lists: 1:7,2:391,3:445,4:36,5:79,6:61,7:4718,8:174,9:618,10:6,11:15
+ 52102 multiletter control sequences out of 65536+600000
  80 fonts using 13041975 bytes
- 104i,6n,100p,860b,369s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 104i,8n,100p,864b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/stix/STIX-Bold.otf></usr/share/texm
 f-dist/fonts/opentype/public/stix/STIX-Regular.otf></usr/share/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
-fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on dump.pdf (4 pages, 86074 bytes).
+fb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on dump.pdf (4 pages, 93281 bytes).
 
-PDF statistics: 77 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+PDF statistics: 81 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  8 named destinations out of 1000 (max. 131072)
  40 words of extra memory for PDF output out of 10000 (max. 100000000)
 

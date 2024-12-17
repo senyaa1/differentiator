@@ -1,6 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1734456365.1603 "dump.tex" "out/dump.pdf" "dump" 1734456366.33483 0
-  "-" 1734441453.75942 4062 e4c6211eb045a0cd8e2a1ab621afb767 ""
+["pdflatex"] 1734456742.90689 "out/dump.tex" "out/dump.pdf" "dump" 1734456744.10911 0
   "/etc/texmf/tex/generic/config/language.dat.lua" 1727349926 1493 0cf75b944ee4f3579780f7adace81c20 ""
   "/home/senyaa/.texlive/texmf-var/luatex-cache/generic/fonts/otl/firamono-bold.luc" 1730480650.56065 182201 8270ea45a13e5d76b339f7a6b69e4e49 ""
   "/home/senyaa/.texlive/texmf-var/luatex-cache/generic/fonts/otl/firamono-boldoblique.luc" 1730480650.51398 183839 4f75cd12bfa254f19e9827bd73dc08ea ""
@@ -42,6 +41,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1727349926 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1727349926 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1727349926 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1727349926 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1727349926 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1727349926 40635 c40361e206be584d448876bba8a64a3b ""
   "/usr/share/texmf-dist/tex/generic/bitset/bitset.sty" 1727349926 33961 6b5c75130e435b2bfdb9f480a09a39f9 ""
@@ -264,12 +264,12 @@
   "/usr/share/texmf-dist/tex/luatex/luatexbase/luatexbase.sty" 1727349926 10170 b1a2248f43cab899e3fe36f676176865 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1733516002.62124 5307366 7c8b2c5f25a30f46e808245b8e6cf269 ""
   "/var/lib/texmf/web2c/luahbtex/lualatex.fmt" 1733515977 12260652 f97beae97034f9ca853652db732c349a ""
-  "dump.tex" 1734456363.89361 4318 58ff3dabf3770258f5c4fc27140b1a0e ""
-  "out/dump.aux" 1734456366.19684 639 0135c03ffc683261d6884b68fd617a4c "pdflatex"
-  "out/dump.out" 1734456366.19684 375 90bd5d1e42fd41b0260c8a48bf2c7f1b "pdflatex"
-  "out/dump.toc" 1734456366.19684 266 b6d1d636095b8839217af138827bfe14 "pdflatex"
-  "out/optimized_plot.png" 1734456363.89027 18948 a9605c0d60fc6822f489d5802349a0fe ""
-  "out/orig_plot.png" 1734456363.83027 19071 1dd3734e6781086dc999afb3345e008e ""
+  "out/dump.aux" 1734456743.97059 639 0135c03ffc683261d6884b68fd617a4c "pdflatex"
+  "out/dump.out" 1734456743.97059 375 90bd5d1e42fd41b0260c8a48bf2c7f1b "pdflatex"
+  "out/dump.tex" 1734456741.60736 5926 432c3f895a94de0e6c5a40201ac2c821 ""
+  "out/dump.toc" 1734456743.97059 266 b6d1d636095b8839217af138827bfe14 "pdflatex"
+  "out/optimized_plot.png" 1734456741.60736 22145 d4a7cc7cf0f7d90da41bf76c1d80f70e ""
+  "out/orig_plot.png" 1734456741.5307 12713 5067799ef90b91a045d86039f4c703ba ""
   "out/style.tex" 1734455878.18781 2138 6468fd98c2f7ed0306a5259da17a4b66 ""
   (generated)
   "out/dump.aux"

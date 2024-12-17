@@ -263,7 +263,7 @@ static diff_node_t* optimize_recursive(diff_node_t* node, size_t* optimization_c
 			TRIV_NUM(RIGHT, 1,	return LEFT);
 			break;
 		case DIV:
-			TRIV_NUM(LEFT, 1,	return RIGHT);
+			TRIV_NUM(RIGHT, 1,	return LEFT);
 			break;
 		default:
 			break;

@@ -19,13 +19,13 @@
 Давайте продифференцируем данную легчайшую функцию.
 
 \begin{dmath*}
-f(x) = \sin(x)
+f(x) = \arctg(x)
 \end{dmath*}
 
 Вычислим 1-ую производную:
 
 \begin{dmath*}
-f^{(1)}(x) = \cos(x) \cdot 1
+f^{(1)}(x) = \frac{1}{1 + {x}^{2}}
 \end{dmath*}
 Давайте немного упростим данное выражение.
 
@@ -33,13 +33,13 @@ f^{(1)}(x) = \cos(x) \cdot 1
 Получаем 1-ую производную:
 
 \begin{dmath*}
-f^{(1)}(x) = \cos(x)
+f^{(1)}(x) = \frac{1}{1 + {x}^{2}}
 \end{dmath*}
 
 Вычислим 2-ую производную:
 
 \begin{dmath*}
-f^{(2)}(x) = \sin(x) \cdot 1 \cdot -1
+f^{(2)}(x) = \frac{0 \cdot 1 + {x}^{2} - 1 \cdot 0 + 2 \cdot {x}^{2 - 1}}{({1 + {x}^{2})}^{2}}
 \end{dmath*}
 Давайте немного упростим данное выражение.
 
@@ -47,13 +47,13 @@ f^{(2)}(x) = \sin(x) \cdot 1 \cdot -1
 Получаем 2-ую производную:
 
 \begin{dmath*}
-f^{(2)}(x) = \sin(x) \cdot -1
+f^{(2)}(x) = \frac{2 \cdot x}{({1 + {x}^{2})}^{2}}
 \end{dmath*}
 
 Вычислим 3-ую производную:
 
 \begin{dmath*}
-f^{(3)}(x) = \cos(x) \cdot 1 \cdot -1 + \sin(x) \cdot 0
+f^{(3)}(x) = \frac{0 \cdot x + 2 \cdot 1 \cdot ({1 + {x}^{2})}^{2} - 2 \cdot x \cdot 2 \cdot 0 + 2 \cdot {x}^{2 - 1} \cdot ({1 + {x}^{2})}^{1}}{({({1 + {x}^{2})}^{2})}^{2}}
 \end{dmath*}
 Давайте немного упростим данное выражение.
 
@@ -61,13 +61,13 @@ f^{(3)}(x) = \cos(x) \cdot 1 \cdot -1 + \sin(x) \cdot 0
 Получаем 3-ую производную:
 
 \begin{dmath*}
-f^{(3)}(x) = \cos(x) \cdot -1
+f^{(3)}(x) = \frac{2 \cdot ({1 + {x}^{2})}^{2} - 2 \cdot x \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2}}{({({1 + {x}^{2})}^{2})}^{2}}
 \end{dmath*}
 
 Вычислим 4-ую производную:
 
 \begin{dmath*}
-f^{(4)}(x) = \sin(x) \cdot 1 \cdot -1 \cdot -1 + \cos(x) \cdot 0
+f^{(4)}(x) = \frac{0 \cdot ({1 + {x}^{2})}^{2} + 2 \cdot 2 \cdot 0 + 2 \cdot {x}^{2 - 1} \cdot ({1 + {x}^{2})}^{1} - 0 \cdot x + 2 \cdot 1 \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2} + 2 \cdot x \cdot 0 \cdot 2 \cdot x \cdot 1 + {x}^{2} + 2 \cdot 0 \cdot x + 2 \cdot 1 \cdot 1 + {x}^{2} + 2 \cdot x \cdot 0 + 2 \cdot {x}^{2 - 1} \cdot ({({1 + {x}^{2})}^{2})}^{2} - 2 \cdot ({1 + {x}^{2})}^{2} - 2 \cdot x \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2} \cdot 2 \cdot 2 \cdot 0 + 2 \cdot {x}^{2 - 1} \cdot ({1 + {x}^{2})}^{1} \cdot ({({1 + {x}^{2})}^{2})}^{1}}{({({({1 + {x}^{2})}^{2})}^{2})}^{2}}
 \end{dmath*}
 Давайте немного упростим данное выражение.
 
@@ -75,26 +75,26 @@ f^{(4)}(x) = \sin(x) \cdot 1 \cdot -1 \cdot -1 + \cos(x) \cdot 0
 Получаем 4-ую производную:
 
 \begin{dmath*}
-f^{(4)}(x) = \sin(x)
+f^{(4)}(x) = \frac{4 \cdot 2 \cdot x \cdot 1 + {x}^{2} - 4 \cdot 2 \cdot x \cdot 1 + {x}^{2} + 2 \cdot x \cdot 2 \cdot 2 \cdot 1 + {x}^{2} + 2 \cdot x \cdot 2 \cdot x \cdot ({({1 + {x}^{2})}^{2})}^{2} - 2 \cdot ({1 + {x}^{2})}^{2} - 2 \cdot x \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2} \cdot 2 \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2} \cdot ({1 + {x}^{2})}^{2}}{({({({1 + {x}^{2})}^{2})}^{2})}^{2}}
 \end{dmath*}
 \section{Заключение}
 Наша функция и полученная производная:
 
 
 \begin{dmath*}
-f(x) = \sin(x)
+f(x) = \arctg(x)
 \end{dmath*}
 
 \begin{dmath*}
-f^{(4)}(x) = \sin(x)
+f^{(4)}(x) = \frac{4 \cdot 2 \cdot x \cdot 1 + {x}^{2} - 4 \cdot 2 \cdot x \cdot 1 + {x}^{2} + 2 \cdot x \cdot 2 \cdot 2 \cdot 1 + {x}^{2} + 2 \cdot x \cdot 2 \cdot x \cdot ({({1 + {x}^{2})}^{2})}^{2} - 2 \cdot ({1 + {x}^{2})}^{2} - 2 \cdot x \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2} \cdot 2 \cdot 2 \cdot 2 \cdot x \cdot 1 + {x}^{2} \cdot ({1 + {x}^{2})}^{2}}{({({({1 + {x}^{2})}^{2})}^{2})}^{2}}
 \end{dmath*}
 
 
 Несложно заметить, что графики выглядят так:
 
 \begin{minipage}{0.45\textwidth}
-\centering\includegraphics[width=\linewidth]{orig_plot.png}\end{minipage}
+\centering\includegraphics[width=\linewidth]{out/orig_plot.png}\end{minipage}
 \hfill
 \begin{minipage}{0.45\textwidth}
-\centering\includegraphics[width=\linewidth]{optimized_plot.png}\end{minipage}
+\centering\includegraphics[width=\linewidth]{out/optimized_plot.png}\end{minipage}
 \end{document}

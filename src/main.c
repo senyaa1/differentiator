@@ -82,17 +82,17 @@ int main()
 	plot_dump(diff_tree, "производная", "orange", "out/optimized_plot.png");
 	bufcpy(&writer, "\\begin{minipage}{0.45\\textwidth}\n");
 	bufcpy(&writer, "\\centering");
-	bufcpy(&writer, "\\includegraphics[width=\\linewidth]{orig_plot.png}");
+	bufcpy(&writer, "\\includegraphics[width=\\linewidth]{out/orig_plot.png}");
 	bufcpy(&writer, "\\end{minipage}\n");
 	bufcpy(&writer, "\\hfill\n");
 	bufcpy(&writer, "\\begin{minipage}{0.45\\textwidth}\n");
 	bufcpy(&writer, "\\centering");
-	bufcpy(&writer, "\\includegraphics[width=\\linewidth]{optimized_plot.png}");
+	bufcpy(&writer, "\\includegraphics[width=\\linewidth]{out/optimized_plot.png}");
 	bufcpy(&writer, "\\end{minipage}\n");
 
 	char* tex = tex_end(&writer);
-	write_file("dump.tex", tex, strlen(tex));
-	system("latexmk -f");
+	write_file("out/dump.tex", tex, strlen(tex));
+	system("latexmk -f out/dump.tex");
 
 	free(writer.buf);
 	node_free(expression);
