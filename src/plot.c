@@ -35,6 +35,7 @@ static diff_node_t* plot_dump_recursive(buf_writer_t* writer, diff_node_t* node)
 		case NODE_NUMBER:
 			asprintf(&num_str, "%g", node->value.number);
 			bufcpy(writer, num_str);
+			free(num_str);
 			break;
 		case NODE_FUNCTION:
 			switch(node->value.op_type)

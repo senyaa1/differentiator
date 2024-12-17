@@ -15,3 +15,4 @@ typedef struct lexer
 
 lexer_t* lex(const char* expression);
 char *current_token(lexer_t* lexer);
+void free_lexer(lexer_t* lexer);

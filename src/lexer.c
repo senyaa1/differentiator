@@ -59,6 +59,15 @@ lexer_t* lex(const char* expression)
 	return lexer;
 }
 
+void free_lexer(lexer_t* lexer)
+{
+	for(int i = 0; i < lexer->size; i++)
+		free(lexer->tokens[i]);
+
+	free(lexer->tokens);
+	free(lexer);
+}
+
 char *current_token(lexer_t *lexer) 
 {
     return (lexer->pos < lexer->size) ? lexer->tokens[lexer->pos] : 0;

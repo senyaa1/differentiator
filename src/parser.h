@@ -2,40 +2,37 @@
 
 #include "lexer.h"
 
+// codegen is useful, because these are used in parser.c to cast enumerated entries to their string representation
 #define OPERATIONS	\
-	X(ADD)	\
-	X(SUB)	\
-	X(MUL)	\
-	X(DIV)	\
-	X(POW)	\
-	X(LOG)	\
-	X(SQRT)	\
-	X(SIN)	\
-	X(COS)	\
-	X(TG)	\
-	X(CTG)	\
-	X(LN)	\
-	X(ARCSIN)	\
-	X(ARCCOS)	\
-	X(ARCTG)	\
-	X(ARCCTG)	\
-	X(SH	)	\
-	X(CH	)	\
-	X(TH	)	\
-	X(CTH)		\
-	// X(ARCSH)	\
-	// X(ARCCH)	\
-	// X(ARCTH)	\
-	// X(ARCCTH)	\
+	OP_ENTRY(ADD)	\
+	OP_ENTRY(SUB)	\
+	OP_ENTRY(MUL)	\
+	OP_ENTRY(DIV)	\
+	OP_ENTRY(POW)	\
+	OP_ENTRY(LOG)	\
+	OP_ENTRY(SQRT)	\
+	OP_ENTRY(SIN)	\
+	OP_ENTRY(COS)	\
+	OP_ENTRY(TG)	\
+	OP_ENTRY(CTG)	\
+	OP_ENTRY(LN)	\
+	OP_ENTRY(ARCSIN)	\
+	OP_ENTRY(ARCCOS)	\
+	OP_ENTRY(ARCTG)		\
+	OP_ENTRY(ARCCTG)	\
+	OP_ENTRY(SH)		\
+	OP_ENTRY(CH)		\
+	OP_ENTRY(TH)		\
+	OP_ENTRY(CTH)		\
 
 
-#define X(NAME) NAME,
+#define OP_ENTRY(NAME) NAME,
 typedef enum MATH_FUNCS
 {
     INVALID = 0,
     OPERATIONS
 } math_func_t;
-#undef X
+#undef OP_ENTRY
 
 typedef enum DIFF_NODE_TYPE : char
 {
@@ -46,7 +43,6 @@ typedef enum DIFF_NODE_TYPE : char
 } diff_node_type_t;
 
 typedef struct diff_node diff_node_t;
-
 struct diff_node
 {
 	diff_node_type_t type;

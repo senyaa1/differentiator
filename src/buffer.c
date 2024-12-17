@@ -5,7 +5,7 @@
 
 static void ensure_allocated(buf_writer_t* writer, size_t n)
 {
-	if(writer->cursor + n >= writer->buf_len - 1)
+	while((writer->cursor + n >= writer->buf_len - 1))
 	{
 		writer->buf_len *= 2;
 		writer->buf = (char*)realloc(writer->buf, writer->buf_len * sizeof(char));

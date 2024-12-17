@@ -1,7 +1,7 @@
-PWD /home/senyaa/ded/differentiator
+PWD /home/senyaa/mipt/ded/differentiator
 INPUT /var/lib/texmf/web2c/luahbtex/lualatex.fmt
 INPUT ./style.tex
-OUTPUT style.log
+OUTPUT out/style.log
 INPUT /usr/share/texmf-dist/tex/latex/tex-ini-files/lualatexquotejobname.lua
 INPUT /usr/share/texmf-dist/tex/latex/base/ltluatex.lua
 INPUT /usr/share/texmf-dist/tex/luatex/luaotfload/luaotfload-main.lua

@@ -19,7 +19,7 @@ void node_free(diff_node_t* node)
 
 char* match_operation(math_func_t op)
 {
-	#define X(NAME)		\
+	#define OP_ENTRY(NAME)	\
 	case NAME:		\
 		return #NAME;	\
 
@@ -30,18 +30,18 @@ char* match_operation(math_func_t op)
 	 		return 0;
 	}
 
-	#undef X
+	#undef OP_ENTRY
 }
 
 math_func_t get_std_func(char* func)
 {
-	#define X(NAME)					\
+	#define OP_ENTRY(NAME)				\
 		if(strcasecmp(func, #NAME) == 0)	\
 			return NAME;			\
 
 	OPERATIONS
 
-	#undef X
+	#undef OP_ENTRY
 	#undef OP_STR
 
 	return INVALID;
@@ -59,6 +59,8 @@ diff_node_t* node_copy(diff_node_t* node)
 
 	diff_node_t* new_node = (diff_node_t*)calloc(1, sizeof(diff_node_t));
 	memcpy(new_node, node, sizeof(diff_node_t));
+	node->left = node_copy(node->left);
+	node->right = node_copy(node->right);
 	return new_node;
 }
 
